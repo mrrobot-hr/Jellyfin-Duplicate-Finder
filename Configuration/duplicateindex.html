@@ -1,0 +1,38 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Duplicate movie deleter</title>
+</head>
+<body>
+    <div id="TemplateConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-select,emby-checkbox">
+        <div data-role="content">
+            <div class="content-primary">
+                <h1>Intro</h1>
+                <p>This plugin will search through your library and find duplicate movies by their IMDB id. After the search it will select the movie version with best resolution and keep that version of the movie.</p>
+                <p>It will delete all other copies.</p>
+                <p>If there is only one version of the movie it will not touch it.</p>
+                <p>After deletion of the movie plugin will delete the same folder if the size of it is less than 20 MB, just to clean up any residual subtitles and empty folders.</p>
+                <p>Sometimes the IMDB is missing or missinterpreted for some movies by the Jellyfin scraper. This might cause you loosing some files that were wrongly recognized under a same invalid IMDB id.</p>
+
+                <h1>Test before actual deletion!</h1>
+                <p>Clicking this button is safe. It will only show you the list of files you would be delete if you clicked the DELETE DUPLICATES button.</p>
+                <form method="get" target="_blank" action="/api/plugins/delete-duplicates">
+                    <input type="hidden" name="test" value="true" />
+                    <button class="raised button-submit block emby-button" type="submit">GET LIST OF ITEMS TO DELETE. NO DELETION WILL OCCUR</button>
+                </form>
+
+                <h1>Trigger Delete Duplicate Movies</h1>
+                <p>After clicking this button, the files will actually get deleted. No further confirmation questions. Be sure you know this is what you want.</p>
+                <form method="get" target="_blank" action="/api/plugins/delete-duplicates">
+                    <input type="hidden" name="test" value="false" />
+                    <button class="raised button-submit block emby-button" type="submit">!!DELETE DUPLICATES!!</button>
+                </form>
+                <h1>Plugin by</h1>
+                <p><a href="https://mrrobot.hr" target="_blank">Mr.Robot</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
